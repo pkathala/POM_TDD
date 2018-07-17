@@ -24,14 +24,11 @@ public class LoginPage extends TestBase {
 	@FindBy(xpath="//button[contains(text(),'Sign Up')]")
 	WebElement signUpBtn;
 	//Initialize elements of page
-	public LoginPage(WebDriver driver) {
+	public LoginPage() {
 		PageFactory.initElements(driver, this);
 	}
 	//Actions
-	public String getPageTitle()
-	{
-		return driver.getTitle();
-	}
+	
 	
 	public boolean chkLogoPresence()
 	{

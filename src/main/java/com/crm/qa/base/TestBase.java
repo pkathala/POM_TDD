@@ -17,6 +17,7 @@ public class TestBase {
 	public static WebDriver driver;
 	public static Properties prop;
 	
+	
 	public TestBase() {
 	
 		
@@ -32,6 +33,7 @@ public class TestBase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 		
 		
@@ -56,5 +58,10 @@ public class TestBase {
 		driver.manage().timeouts().pageLoadTimeout(TestUtil.Page_Load_Timeout, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(TestUtil.Implicit_Wait_Timeout, TimeUnit.SECONDS);
 		driver.get(prop.getProperty("url"));
+	}
+	
+	public String getPageTitle()
+	{
+		return driver.getTitle();
 	}
 }

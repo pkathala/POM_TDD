@@ -14,6 +14,7 @@ public class LoginPageTest extends TestBase{
 	
 	LoginPage lp;
 	HomePage hp;
+
 	
 	public LoginPageTest() {
 		super();
@@ -23,7 +24,7 @@ public class LoginPageTest extends TestBase{
 	public void setUp()
 	{
 		initialize();
-		lp=new LoginPage(driver);
+		lp=new LoginPage();
 	}
 	
 	@Test(priority=1)
