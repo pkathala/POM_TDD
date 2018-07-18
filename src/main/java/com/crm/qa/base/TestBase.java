@@ -9,13 +9,16 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import com.crm.qa.util.TestUtil;
+import com.crm.qa.util.WebEventListener;
 
 public class TestBase {
 	
 	public static WebDriver driver;
 	public static Properties prop;
+	//public TestUtil testUtil;
 	
 	
 	public TestBase() {
@@ -52,6 +55,11 @@ public class TestBase {
 			System.setProperty("webdriver.gecko.driver", "C:\\Selenium Libs\\geckodriver-v0.16.1-win64\\geckodriver.exe");
 			driver=new FirefoxDriver();
 		}
+		//webdriver fire events intialization
+		EventFiringWebDriver e_driver=new EventFiringWebDriver(driver);
+		WebEventListener listener=new WebEventListener();
+		e_driver.register(listener);
+		driver=e_driver;
 		
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();

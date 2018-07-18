@@ -1,5 +1,6 @@
 package com.crm.qa.util;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,8 +9,13 @@ import java.util.Iterator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 import com.crm.qa.base.TestBase;
+import com.google.common.io.Files;
 
 public class TestUtil extends TestBase{
 	public static long Page_Load_Timeout=20;
@@ -22,6 +28,7 @@ public class TestUtil extends TestBase{
 	{
 		driver.switchTo().frame("mainpanel");
 	}
+	
 	
 	public static Object[][] getTestData(String sheetname)
 	{
@@ -52,6 +59,15 @@ public class TestUtil extends TestBase{
 		
 		
 		return data;
+		
+	}
+
+
+	public static void takeScreenshot() throws IOException{
+		
+		File srcFile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		File f=new File(System.getProperty("user.dir")+"/screenshots/"+System.currentTimeMillis()+".png");
+		FileUtils.copyFile(srcFile, f);
 		
 	}
 

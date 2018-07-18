@@ -28,5 +28,16 @@ public class ContactsPage extends TestBase{
 		contactInput.click();
 	}
 	
+	public boolean chkPresenceOfContactName(String name)
+	{
+		boolean flag;
+		if(driver.findElement(By.xpath("//a[contains(text(),'"+name+"')]")).isDisplayed())
+		{
+			flag=true;
+		}
+		else
+			flag=false;
+		return flag;
+	}
 	
 }

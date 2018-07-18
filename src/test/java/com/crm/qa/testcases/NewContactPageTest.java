@@ -1,12 +1,14 @@
 package com.crm.qa.testcases;
 
 
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.crm.qa.base.TestBase;
+import com.crm.qa.pages.ContactsPage;
 import com.crm.qa.pages.HomePage;
 import com.crm.qa.pages.LoginPage;
 import com.crm.qa.pages.NewContactPage;
@@ -16,6 +18,7 @@ public class NewContactPageTest extends TestBase {
 	
 	LoginPage lp;
 	HomePage hp;
+	ContactsPage cp;
 	NewContactPage ncp;
 	String sheet="contacts";
 	
@@ -33,6 +36,7 @@ public class NewContactPageTest extends TestBase {
 	{
 		initialize();
 		lp=new LoginPage();
+		
 		hp=lp.login(prop.getProperty("username"), prop.getProperty("password"));
 		TestUtil.switchToFrame();
 		ncp=hp.clickNewContactLink();
@@ -42,6 +46,9 @@ public class NewContactPageTest extends TestBase {
 	public void createNewContactTest(String t, String fname, String lname, String comp)
 	{
 		ncp.createNewContact(t, fname, lname, comp);
+		cp=hp.clickContactsLink();
+		Assert.assertTrue(cp.chkPresenceOfContactName(fname+" "+lname));
+		
 	}
 	
 	
